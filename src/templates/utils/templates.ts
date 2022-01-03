@@ -5,4 +5,8 @@ export const templates = {
     template: HomeTemplate,
     props: {},
   },
+  login: {
+    template: HomeTemplate,
+    props: {},
+  },
 };

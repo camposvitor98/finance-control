@@ -10,6 +10,7 @@ import { RootState } from "store/reducers";
 import { Button } from "components/Button";
 import { Loading } from "components/Loading";
 import { useTranslation } from "react-i18next";
+import { Redirect } from "utils/Redirect";
 
 interface HomePageProps {}
 
@@ -19,9 +20,16 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state: RootState) => state.exampleReducer);
+  const { loggedUser } = useSelector(
+    (state: RootState) => state.loggedDataReducer
+  );
 
   function setLoading() {
     dispatch(ActionsExample.setLoading());
+  }
+
+  if (!loggedUser?.id) {
+    return <Redirect to="/login" />;
   }
 
   return (
